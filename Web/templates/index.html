@@ -19,5 +19,40 @@
 <div class="con">
     <img src="{{url_for('video_feed1')}}" alt="" width="100%">
 </div>
+
+<button id="holdButton" onmousedown="startHold()" onmouseup="endHold()" ontouchstart="startHold()" ontouchend="endHold()">
+    按住我
+</button>
+
+<script>
+let holdInterval;
+let isHolding = false;
+
+function startHold() {
+    isHolding = true;
+    // 立即发送第一次请求
+    sendHoldSignal();
+    // 然后每隔一段时间发送一次
+    holdInterval = setInterval(sendHoldSignal, 200); // 200毫秒发送一次
+}
+
+function endHold() {
+    isHolding = false;
+    clearInterval(holdInterval);
+    // 可选：发送按钮释放的信号
+    fetch('/button-release', {method: 'POST'});
+}
+
+function sendHoldSignal() {
+    if (isHolding) {
+        fetch('/button-hold', {method: 'POST'})
+            .then(response => response.json())
+            .then(data => {
+                // 处理响应
+            });
+    }
+}
+</script>
+
 </body>
 </html>
