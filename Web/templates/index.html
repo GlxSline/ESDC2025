@@ -16,10 +16,25 @@
             font-family: Arial, sans-serif;
         }
         
-        .floating-keyboard {
+        .floating-keyboard-left{
             position: fixed;
             bottom: 20px;
-            left: 50%;
+            left: 15%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-keyboard-right{
+            position: fixed;
+            bottom: 20px;
+            right: 10%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
@@ -111,7 +126,7 @@
 
     <div class="status" id="status">无按键按下</div>
     
-    <div class="floating-keyboard">
+    <div class="floating-keyboard-left">
         <!-- 方向键 -->
         <div class="keyboard-row">
             <div class="key arrow" id="up" data-key="ArrowUp">↑<div class="key-label">W</div></div>
@@ -123,6 +138,9 @@
         </div>
         
         <!-- 转向键 -->
+    </div>
+
+    <div class="floating-keyboard-right">
         <div class="keyboard-row">
             <div class="key turn" id="turn-left" data-key="j">左转<div class="key-label">J</div></div>
             <div class="key turn" id="turn-right" data-key="k">右转<div class="key-label">K</div></div>
